@@ -111,4 +111,6 @@ if errors:
         print(e)
 else:
     with open(sys.argv[1] + '.out', 'w') as f:
-        f.write(json.dumps(parsed, indent=2, sort_keys=True))
+        output = json.dumps(parsed, indent=2, sort_keys=True)
+        output = '\n'.join(line.rstrip() for line in output.split('\n'))
+        f.write(output)
