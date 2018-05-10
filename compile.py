@@ -89,11 +89,18 @@ def words_validator(content):
         for validator in WORD_VALIDATORS:
             validator(word)
 
+def words_sorter(content):
+    if 'words' not in content:
+        return
+
+    content['words'] = sorted(content['words'], key=lambda w: w.get(''))
+
 VALIDATORS = [
     expected_toplevel_key_validator,
     language_validator,
     unexpected_toplevel_key_validator,
     version_validator,
+    words_sorter,
 ]
 
 for validator in VALIDATORS:
